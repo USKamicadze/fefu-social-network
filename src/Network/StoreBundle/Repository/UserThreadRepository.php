@@ -83,7 +83,7 @@ class UserThreadRepository extends EntityRepository
      */
     public function getChallengerIfCanBeKickedByUserFromThread($threadId, $userId, $challengerId)
     {
-        if ($this->getThreadOwnerId($threadId) == $userId) {
+        if ($this->getThreadOwnerId($threadId) == $userId || $userId == $challengerId) {
             return $this->findByUserAndThread($challengerId, $threadId);
         }
         $em = $this->getEntityManager();
